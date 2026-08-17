@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Подготовить тестовый проектик на Ruby on Rails
+Хоть в каком то виде, нас интересует ваш подход
 
-Things you may want to cover:
+Предположим есть Заказы
+Заказы принадлежат юзерам
+У заказов статусы, что то типо создано, успешный, отменен
+У юзеров есть счета (с балансом)
 
-* Ruby version
+При переводе созданного заказа в успех проводим транзакцию по счету, баланс правим
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+При отмене уже успешного заказа сторнируем транзакцию, баланс правим. 
