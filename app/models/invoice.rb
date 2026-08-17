@@ -1,1 +1,11 @@
-user.rb
+# User got invoices with balance.
+
+class Invoice < ApplicationRecord
+  belongs_to :user
+
+  has_many :orders
+
+  has_many :transactions
+
+  def balance() = transactions.sum(:price_cents) || 0
+end
