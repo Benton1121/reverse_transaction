@@ -1,10 +1,5 @@
 # README
 
-## HOW TO CHECK
-
-Basically, all functions covered with rspec.
-To run tests use `budle exec rspec`
-
 ## Task
 
 Подготовить тестовый проектик на Ruby on Rails
@@ -19,8 +14,13 @@ To run tests use `budle exec rspec`
 
 При отмене уже успешного заказа сторнируем транзакцию, баланс правим.
 
+## HOW TO CHECK
+
+Basically, all functions covered with rspec.
+To run tests use `bundle exec rspec`
+
 ## TODO list
 
 - [x] Implement desired functional
-- [X] Test coverage for it
+- [X] Test coverage for main functional
 - [ ] Add more guards and checks
