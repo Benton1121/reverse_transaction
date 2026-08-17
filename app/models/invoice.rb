@@ -8,5 +8,5 @@ class Invoice < ApplicationRecord
   has_many :transactions,
            -> { order(:created_at) }
 
-  def balance() = transactions.sum(:price_cents) || 0
+  def balance() = transactions.sum(:amount_cents) || 0
 end

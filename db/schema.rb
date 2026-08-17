@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_08_17_123431) do
+ActiveRecord::Schema[8.0].define(version: 2026_08_17_135732) do
   create_table "invoices", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_08_17_123431) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.bigint "price_cents", default: 0, null: false
+    t.bigint "amount_cents", default: 0, null: false
     t.integer "invoice_id"
     t.integer "order_id"
     t.datetime "created_at", null: false

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
-  let(:price_cents) { 10_00 }
-  let(:transaction) { build :transaction, price_cents: }
+  let(:amount_cents) { 10_00 }
+  let(:transaction) { build :transaction, amount_cents: }
 
   describe '.spent?' do
     context 'when transaction adds funds to user balance' do
@@ -12,7 +12,7 @@ RSpec.describe Transaction, type: :model do
     end
 
     context 'when transaction substract funds from user balance' do
-      let(:price_cents) { -10_00 }
+      let(:amount_cents) { -10_00 }
 
       it 'should be spent' do
         expect(transaction.spent?).to be_truthy
@@ -28,7 +28,7 @@ RSpec.describe Transaction, type: :model do
     end
 
     context 'when transaction substract funds from user balance' do
-      let(:price_cents) { -10_00 }
+      let(:amount_cents) { -10_00 }
 
       it 'should be reverse' do
         expect(transaction.reverse?).to be_falsey

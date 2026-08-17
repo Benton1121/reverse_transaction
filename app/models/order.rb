@@ -27,18 +27,18 @@ class Order < ApplicationRecord
   def before_save_callback
     if status_was == 'pending'
       if paid?
-        transactions.new(price_cents: -price_cents, invoice:)
+        transactions.new(amount_cents: -price_cents, invoice:)
       elsif cancelled?
         # do not create transation
       end
     elsif status_was == 'paid'
       if cancelled?
-        transactions.new(price_cents:, invoice:)
+        transactions.new(amount_cents: price_cents, invoice:)
       elsif pending?
         errors.add(:status, 'can not revert status to pending')
       end
     elsif status_was == 'cancelled'
-      errors.add(:status, 'can not change caneled order')
+      errors.add(:status, 'can not change cancelled order')
     end
   end
 end

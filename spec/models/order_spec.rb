@@ -67,12 +67,11 @@ RSpec.describe Order, type: :model do
     end
   end
 
-
   # При переводе созданного заказа в успех проводим транзакцию по счету, баланс правим
   context 'change status to paid' do
     let(:initial_balance) { 20_00 }
     let(:invoice) { create :invoice }
-    let!(:initial_transaction) { create :transaction, price_cents: initial_balance, invoice: }
+    let!(:initial_transaction) { create :transaction, amount_cents: initial_balance, invoice: }
 
     context 'invoice got enough balance' do
       let(:order) { create :order, price_cents: 10_00, invoice: }
@@ -89,7 +88,7 @@ RSpec.describe Order, type: :model do
         end
 
         it 'amount of transaction equal order price' do
-          expect(transaction.price_cents.abs).to eq(order.price_cents)
+          expect(transaction.amount_cents.abs).to eq(order.price_cents)
         end
 
         it 'reduces invoice balance' do
@@ -103,7 +102,7 @@ RSpec.describe Order, type: :model do
   context 'change status to cancelled' do
     let(:initial_balance) { 20_00 }
     let(:invoice) { create :invoice }
-    let!(:initial_transaction) { create :transaction, price_cents: initial_balance, invoice: }
+    let!(:initial_transaction) { create :transaction, amount_cents: initial_balance, invoice: }
 
     context 'invoice got enough balance' do
       let(:order) { create :order, status: 'paid', price_cents: 10_00, invoice: }
@@ -120,7 +119,7 @@ RSpec.describe Order, type: :model do
         end
 
         it 'amount of transaction equal order price' do
-          expect(transaction.price_cents.abs).to eq(order.price_cents)
+          expect(transaction.amount_cents.abs).to eq(order.price_cents)
         end
 
         it 'revert invoice balance to initial state' do

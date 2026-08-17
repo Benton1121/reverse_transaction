@@ -3,6 +3,6 @@ FactoryBot.define do
     association :order
     association :invoice
 
-    price_cents { 10_00 }
+    amount_cents { 10_00 }
   end
 end

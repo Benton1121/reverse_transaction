@@ -13,8 +13,8 @@ RSpec.describe Invoice, type: :model do
     end
 
     context 'when got transactions' do
-      let!(:tr_a) { create :transaction, price_cents: 10_00, invoice: }
-      let!(:tr_b) { create :transaction, price_cents: 20_00, invoice: }
+      let!(:tr_a) { create :transaction, amount_cents: 10_00, invoice: }
+      let!(:tr_b) { create :transaction, amount_cents: 20_00, invoice: }
 
       it 'returns sum of transaction balances' do
         expect(invoice.balance).to eq(30_00)
@@ -22,8 +22,8 @@ RSpec.describe Invoice, type: :model do
     end
 
     context 'when got reversed transactions' do
-      let!(:tr_a) { create :transaction, price_cents: 20_00, invoice: }
-      let!(:tr_b) { create :transaction, price_cents: -10_00, invoice: }
+      let!(:tr_a) { create :transaction, amount_cents: 20_00, invoice: }
+      let!(:tr_b) { create :transaction, amount_cents: -10_00, invoice: }
 
       it 'returns sum of transaction balances' do
         expect(invoice.balance).to eq(10_00)
