@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_08_17_104931) do
+ActiveRecord::Schema[8.0].define(version: 2026_08_17_123431) do
   create_table "invoices", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -21,10 +21,11 @@ ActiveRecord::Schema[8.0].define(version: 2026_08_17_104931) do
   create_table "orders", force: :cascade do |t|
     t.string "order_name"
     t.string "status", default: "pending", null: false
-    t.integer "user_id"
+    t.integer "invoice_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.bigint "price_cents", default: 0, null: false
+    t.index ["invoice_id"], name: "index_orders_on_invoice_id"
     t.check_constraint "status IN ('pending', 'paid', 'cancelled')", name: "orders_status_check"
   end
 

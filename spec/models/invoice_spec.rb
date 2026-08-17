@@ -21,7 +21,7 @@ RSpec.describe Invoice, type: :model do
       end
     end
 
-    context 'when got reversal transactions' do
+    context 'when got spent transactions' do
       let!(:tr_a) { create :transaction, price_cents: 20_00, invoice: }
       let!(:tr_b) { create :transaction, price_cents: -10_00, invoice: }
 
