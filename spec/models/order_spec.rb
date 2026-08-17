@@ -67,10 +67,11 @@ RSpec.describe Order, type: :model do
     end
   end
 
+
+  # При переводе созданного заказа в успех проводим транзакцию по счету, баланс правим
   context 'change status to paid' do
     let(:initial_balance) { 20_00 }
-    let(:user) { create :user }
-    let(:invoice) { create :invoice, user: }
+    let(:invoice) { create :invoice }
     let!(:initial_transaction) { create :transaction, price_cents: initial_balance, invoice: }
 
     context 'invoice got enough balance' do
@@ -98,10 +99,10 @@ RSpec.describe Order, type: :model do
     end
   end
 
+  # При отмене уже успешного заказа сторнируем транзакцию, баланс правим. 
   context 'change status to cancelled' do
     let(:initial_balance) { 20_00 }
-    let(:user) { create :user }
-    let(:invoice) { create :invoice, user: }
+    let(:invoice) { create :invoice }
     let!(:initial_transaction) { create :transaction, price_cents: initial_balance, invoice: }
 
     context 'invoice got enough balance' do
